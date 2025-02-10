@@ -26,7 +26,6 @@ function Home() {
     return (
         <div>
             <Header />
-            <Webcam ref={webcamRef} screenshotFormat="image/jpeg" className="w-full h-auto" />
             <div className="container mt-[8rem] max-w-full pt-3 pb-14 bg-[#f4f8fb] w-full absolute rounded-t-3xl h-auto">
                 <form className="mx-8 pt-6" onSubmit={handleSubmit}>
                     <div className="relative z-0 w-full mb-5 group">
@@ -65,7 +64,8 @@ function Home() {
                     <div className="relative z-0 w-full mb-5 group">
                         <button type="button" onClick={capturePhoto} className="text-white bg-blue-700 hover:bg-blue-800 px-5 py-2.5 rounded-lg">Capture Photo</button>
                     </div>
-                    
+                    <Webcam ref={webcamRef} screenshotFormat="image/jpeg" className="w-full h-auto" />
+
                     {capturedImage && <img src={capturedImage} alt="Captured" className="w-40 h-40 mt-4" />}
                     
                     <button type="submit" className="text-white bg-red-700 hover:bg-red-800 px-5 py-2.5 rounded-lg">Submit</button>
