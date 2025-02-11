@@ -4,11 +4,10 @@ import React from "react";
 function Header() {
     
     return (
-        <nav class="header fixed bg-red-600 border-gray-200 px-1 rounded-b-2xl pb-3 w-[101%] h-[20rem]" >
+        <nav class="header fixed bg-[#ed1b24] border-gray-200 px-1 rounded-b-2xl pb-3 w-[101%] h-[20rem]" >
             <div class="flex flex-wrap items-center justify-between max-w-screen-xl mx-auto px-3 pb-3">
-                {/* <a href="https://flowbite.com" class="flex items-center space-x-3 pt-6 rtl:space-x-reverse">
-                    <img src="/images/logo.png" class="h-10 ml-1" alt="Flowbite Logo" />
-                </a> */}
+                    <img src="/logo.png" class="h-16 mx-auto mt-4" alt="Flowbite Logo" />
+             
                
             </div>
 
