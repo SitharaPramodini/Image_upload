@@ -67,6 +67,7 @@ function Home() {
                     </div>
 
                     {showCamera && (
+                    
                         <CameraOverlay
                             setShowCamera={setShowCamera}
                             capturePhoto={capturePhoto}

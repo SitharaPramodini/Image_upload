@@ -71,16 +71,18 @@ function CameraOverlay({ setShowCamera, capturePhoto, webcamRef }) {
     return (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
             <div className="relative bg-transparent p-5 rounded-lg shadow-lg text-center">
-                {/* Close Button */}
+                
+
+                {/* Camera & Guide Box */}
+                <div className="relative w-[300px] h-[400px] flex justify-center">
+                    {/* Close Button */}
                 <button
                     onClick={() => setShowCamera(false)}
-                    className="absolute right-5 text-white bg-[#00000033] hover:bg-gray-600 p-2 rounded-full"
+                    className="absolute top-10 text-white bg-[#00000033] hover:bg-gray-600 p-2 rounded-full"
                 >
                     <IoClose className="text-white" />
                 </button>
-
-                {/* Camera & Guide Box */}
-                <div className="relative w-[300px] h-[400px] flex items-center justify-center">
+               
                     <Webcam ref={webcamRef} screenshotFormat="image/jpeg" className="w-full h-full rounded-lg" />
                     <canvas ref={canvasRef} className="absolute w-full h-full" />
                     {!isFaceAligned && (
