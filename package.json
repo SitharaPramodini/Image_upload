@@ -2,6 +2,7 @@
   "name": "singerfinance",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://192.168.8.198:5000",
   "dependencies": {
     "@tensorflow-models/blazeface": "^0.1.0",
     "@tensorflow/tfjs": "^4.22.0",
