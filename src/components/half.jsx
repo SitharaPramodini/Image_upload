@@ -19,6 +19,8 @@ function Home() {
     const [name, setName] = useState("");
     const [nic, setNic] = useState("");
     const [imageFile, setImageFile] = useState(null); // Holds the captured image file
+    const [sendingOtp, setSendingOtp] = useState(false); // State to track OTP sending status
+
 
     const openCamera = () => {
         setShowCamera(true);
@@ -50,6 +52,8 @@ function Home() {
     const handlePhoneNumberSubmit = async (e) => {
         e.preventDefault();
 
+        setSendingOtp(true);
+
         const response = await fetch("https://demo.secretary.lk/sendSMSAPI/sendSMS.php", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -66,6 +70,7 @@ function Home() {
         } else {
             alert("Failed to send OTP");
         }
+        setSendingOtp(false);
     };
 
     const handleOtpSubmit = (e) => {
@@ -88,7 +93,7 @@ function Home() {
         formData.append("image", imageFile); // Append the captured image as a file
 
         try {
-            const response = await fetch("http://192.168.8.198:5000/register", {
+            const response = await fetch("/register", {
                 method: "POST",
                 body: formData,
             });
@@ -137,55 +142,50 @@ function Home() {
                         </div>
                     </div>
 
-                    <div className="relative z-0 w-full mb-5 group flex flex-row gap-x-2 items-center">
-                        <input
-                            type="tel"
-                            pattern="[0-9]{10}"
-                            name="floating_phone"
-                            id="floating_phone"
-                            className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:border-gray-300 dark:focus:border-red-500 focus:outline-none focus:ring-0 focus:border-red-600 peer"
-                            placeholder=" "
-                            value={phoneNumber}
-                            onChange={(e) => setPhoneNumber(e.target.value)}
-                            required
-                            disabled={otpCorrect} // Disables the input when OTP is verified
-                        />
-
-                        <label
-                            for="floating_phone"
-                            className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-red-600 peer-focus:dark:text-red-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-                        >
-                            Phone number
-
-                        </label>
-                        {otpCorrect && (
-                            <div className="flex items-center justify-center mt-4 z-50 right-2 ">
-                                <span className="text-green-500 text-2xl mb-2"><RiVerifiedBadgeFill /></span>
-                                {/* <p className="ml-2">OTP verified</p> */}
-                            </div>
-                        )}
+                    <div className="grid md:grid-cols-2 md:gap-6">
+                        <div className="relative z-0 w-full mb-5 group">
+                            <input
+                                type="tel"
+                                name="phone"
+                                id="phone"
+                                className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-red-600 peer"
+                                placeholder=" "
+                                value={phoneNumber}
+                                onChange={(e) => setPhoneNumber(e.target.value)}
+                                required
+                                disabled={otpCorrect}
+                            />
+                            <label htmlFor="phone" className="absolute text-sm text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-focus:scale-75 peer-focus:-translate-y-6">Phone number</label>
+                            {otpCorrect && <RiVerifiedBadgeFill className="text-[#02bd4a] text-2xl mb-2" />}
+                        </div>
                     </div>
 
                     {!otpSent && !otpCorrect && (
                         <button onClick={handlePhoneNumberSubmit} className="mt-8 text-white bg-red-700 hover:bg-red-800 font-medium rounded-lg text-sm px-5 py-2.5">
-                            Send OTP
+                             {otpSent ? (
+                                    <div className="blob-4 inline-block"></div> // Assuming "blob-4" is a visual element you want to show
+                                ) : (
+                                    "Submit"
+                                )}
                         </button>
                     )}
 
                     {otpSent && showOtpInput && !otpCorrect && (
-                        <div className="flex flex-row items-center mt-4 gap-x-4">
+                        <div className="flex flex-col items-center mt-4">
                             <input
                                 type="text"
                                 maxLength={6}
                                 value={otp}
                                 onChange={(e) => setOtp(e.target.value)}
-                                className="border p-2 rounded border-gray-300"
+                                className="border p-2 rounded"
                                 placeholder="Enter OTP"
                                 required
                             />
-                            <button onClick={handleOtpSubmit} className=" text-white bg-red-700 hover:bg-red-800 font-medium rounded-lg text-sm px-5 py-2.5">
+                            <button onClick={handleOtpSubmit} className="mt-4 text-white bg-red-700 hover:bg-red-800 font-medium rounded-lg text-sm px-5 py-2.5">
+                                
                                 Submit OTP
                             </button>
+
                         </div>
                     )}
 
@@ -207,7 +207,6 @@ function Home() {
                                     <button
                                         onClick={openCamera}
                                         className="bg-[#00000033] rounded-full w-auto p-3"
-                                        type="button"
                                     >
                                         <FaCamera />
                                     </button>
