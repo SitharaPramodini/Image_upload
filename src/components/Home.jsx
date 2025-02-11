@@ -23,7 +23,6 @@ function Home() {
     const [sendingOtp, setSendingOtp] = useState(false); // State to track OTP sending status
 
     const [enteredOtp, setEnteredOtp] = useState(""); // To store user input
-    const [isSubmitting, setIsSubmitting] = useState(false);
 
     const openCamera = () => {
         setShowCamera(true);
@@ -101,8 +100,6 @@ function Home() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
-        setIsSubmitting(true);
 
         const formData = new FormData();
         formData.append("name", name);
@@ -269,13 +266,8 @@ function Home() {
                                 </div>
                             )}
 
-<button
-        type="submit"
-        className="mt-8 text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800"
-        disabled={isSubmitting}
-      >
-        {isSubmitting ? <div class="blob-4 inline-block"></div> : "Submit"}
-      </button>                        </div>
+                            <button type="submit" class="mt-8 text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800">Submit</button>
+                        </div>
                     )}
 
                     {showCamera && <CameraOverlay setShowCamera={setShowCamera} capturePhoto={capturePhoto} webcamRef={webcamRef} />}
