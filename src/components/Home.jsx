@@ -104,6 +104,7 @@ function Home() {
         const formData = new FormData();
         formData.append("name", name);
         formData.append("nic", nic);
+        formData.append("phoneNumber", phoneNumber);
         formData.append("image", imageFile); // Append the captured image as a file
 
         try {
