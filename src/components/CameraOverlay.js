@@ -86,7 +86,7 @@ function CameraOverlay({ setShowCamera, capturePhoto, webcamRef }) {
                     <Webcam ref={webcamRef} screenshotFormat="image/jpeg" className="w-full h-full rounded-lg" />
                     <canvas ref={canvasRef} className="absolute w-full h-full" />
                     {!isFaceAligned && (
-                        <p className="absolute bottom-0 text-red-500 bg-white p-2 rounded">Make sure your face is centered</p>
+                        <p className="absolute bottom-0 text-red-500 bg-white p-2 rounded text-sm">Make sure your face is centered</p>
                     )}
                 </div>
 
