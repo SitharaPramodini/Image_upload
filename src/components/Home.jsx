@@ -58,7 +58,7 @@ function Home() {
                             </div>
                         ) : (
                             <div className="flex items-center justify-between">
-                                <p className="text-sm text-gray-500">Take your photo</p>
+                                <p className="text-sm text-gray-400">Take your photo</p>
                                 <button onClick={openCamera} className="bg-[#00000033] rounded-full w-auto p-3">
                                     <FaCamera />
                                 </button>
@@ -75,9 +75,8 @@ function Home() {
                         />
                     )}
 
-                    <button type="submit" className="mt-8 text-white bg-red-700 hover:bg-red-800 px-5 py-2.5 rounded-lg">
-                        Submit
-                    </button>
+<button type="submit" class="mt-8 text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800">Submit</button>
+
                 </form>
             </div>
         </div>

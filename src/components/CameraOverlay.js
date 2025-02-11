@@ -78,7 +78,7 @@ function CameraOverlay({ setShowCamera, capturePhoto, webcamRef }) {
                     {/* Close Button */}
                 <button
                     onClick={() => setShowCamera(false)}
-                    className="absolute top-10 text-white bg-[#00000033] hover:bg-gray-600 p-2 rounded-full"
+                    className="absolute right-5 text-white bg-[#00000033] hover:bg-gray-600 p-2 rounded-full"
                 >
                     <IoClose className="text-white" />
                 </button>
