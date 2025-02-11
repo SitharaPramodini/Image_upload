@@ -161,12 +161,8 @@ function Home() {
                     </div>
 
                     {!otpSent && !otpCorrect && (
-                        <button onClick={handlePhoneNumberSubmit} className="mt-8 text-white bg-red-700 hover:bg-red-800 font-medium rounded-lg text-sm px-5 py-2.5">
-                             {otpSent ? (
-                                    <div className="blob-4 inline-block"></div> // Assuming "blob-4" is a visual element you want to show
-                                ) : (
-                                    "Submit"
-                                )}
+                        <button onClick={handlePhoneNumberSubmit} className="mt-8 text-white bg-red-700 hover:bg-red-800 font-medium rounded-lg text-sm px-5 py-2.5" disabled={isSending}>
+{sendingOtp ? "Sending..." : "Send OTP"}
                         </button>
                     )}
 
