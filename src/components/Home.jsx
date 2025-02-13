@@ -108,7 +108,7 @@ function Home() {
         formData.append("image", imageFile); // Append the captured image as a file
 
         try {
-            const response = await fetch("/register", {
+            const response = await fetch("http://192.168.8.198:5000/register", {
                 method: "POST",
                 body: formData,
             });
